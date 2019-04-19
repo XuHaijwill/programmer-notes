@@ -28,12 +28,12 @@ https://daringfireball.net/projects/markdown/
 
 
 ## 本地WebServer服务开启
-![IIS_pic01](images/IIS配置.png "IIS配置")
+![IIS_pic01](markdown/images/IIS配置.png "IIS配置")
 
 IIS使用中可能出现端口被占用的情况导致无法启动，检查端口  
 并且需要设置万维网服务启动
 
-![IIS_PIC2](images/IIS本地使用.png "IIS配置")
+![IIS_PIC2](markdown/images/IIS本地使用.png "IIS配置")
 
 ## markdowm 基本语法
 
@@ -148,7 +148,7 @@ public static void main(String[] args){
 
 * `图片的引用与显示：`
 ## 说明 ![alt文字](图片url 图片title)
-[![图片测试](images/git_pic.jpg "koma git")](https://baike.baidu.com/item/github/10145341?fr=aladdin)
+[![图片测试](markdown/images/git_pic.jpg "koma git")](https://baike.baidu.com/item/github/10145341?fr=aladdin)
 
 
 # `备注说明`
