@@ -1,3 +1,3 @@
 # 程序员日记
 
-* [markdown使用说明]()
+* [markdown使用说明](notes/markdown语法的使用指南.md)
