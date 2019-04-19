@@ -10,14 +10,34 @@
 - SourceTree 下载
 - 常用命令
   - git init
-  - git add
-  - git commit
+  - git add 文件
+  - git commit -m "说明"
   - git status
   - 回滚 git reset HEAD ***.txt 
 
 ## git工作流
 
 ## 本地与远程仓库
+`创建SSH KEY:`
+ssh-keygen -t rsa -C "zuiwoxuanlou@163.com"
+
+生成id_rsa、id_rsa.pub、known_hosts
+
+`测试连通:`
+ssh -T git@github.com
+
+## 添加远程仓库
+### push方式
+* git remote add origin git@github.com:XuHaijwill/programmer-notes.git
+* git push -u origin master
+  * 后期可能用到 git pull origin master --allow-unrelated-histories
+
+### colone方式
+* git clone https://github.com/XuHaijwill/programmer-notes.git
+* git add
+* git commit
+* git push
+
 
 ## 分支管理
 
