@@ -11,7 +11,10 @@
   - git commit -m "说明"
   - git status
   - 回滚 git reset HEAD ***.txt 
-
+  - 单个删除文件：git rm test.txt、git commit -m "remove test.txt"
+  - 批量操作命令
+  ![批量操作命令](git_use/pic_01.png)
+  > 参考网址：https://www.cnblogs.com/aimqqroad-13/p/7456296.html
 ## git工作流
 工作区 -> 暂存区 -> 版本库
 
