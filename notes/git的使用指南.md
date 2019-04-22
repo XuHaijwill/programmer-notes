@@ -31,7 +31,7 @@ ssh -T git@github.com
 ### push方式
 * git remote add origin git@github.com:`Yourname`/programmer-notes.git
 * git push -u origin master
-  * 后期可能用到 git pull origin master --allow-unrelated-histories
+* git pull origin master --allow-unrelated-histories
 
 ### colone方式
 * git clone https://github.com/`Yourname`/programmer-notes.git
