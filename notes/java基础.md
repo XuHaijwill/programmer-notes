@@ -66,5 +66,21 @@ int[] score = {76,81,90,72};
 
 jquery在线API http://jquery.cuishifeng.cn/index.html
 
+lambda表达式
+
+匿名内部类
+```java
+new 需要实现的接口() | 父类构造器()
+{
+    //需要实现的方法或重载父类的方法
+}
+```
+
+docker run -d --hostname my-rabbit --name rabbit -e RABBITMQ_DEFAULT_USER=admin -e RABBITMQ_DEFAULT_PASS=admin -p 15672:15672 -p 5672:5672 -p 25672:25672 -p 61613:61613 -p 1883:1883 rabbitmq:management
+
+lambda使用方法注意
+Lambda表达式只支持函数式接口  也就是只有一个抽象方法的接口
+
+
 
 
