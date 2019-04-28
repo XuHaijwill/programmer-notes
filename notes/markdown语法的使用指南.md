@@ -152,7 +152,9 @@ public static void main(String[] args){
 
 
 # `备注说明`
-针对不同`浏览器或者工具`，显示的效果不同，并且很多工具带有扩展功能，例如：[印象笔记](https://www.yinxiang.com/ "点击跳转印象官网"),印象markdown语法参考网址-https://list.yinxiang.com/markdown/eef42447-db3f-48ee-827b-1bb34c03eb83.php
+针对不同`浏览器或者工具`，显示的效果不同，并且很多工具带有扩展功能，例如：[印象笔记](https://www.yinxiang.com/ "点击跳转印象官网"),印象markdown语法参考网址-https://list.yinxiang.com/markdown/eef42447-db3f-48ee-827b-1bb34c03eb83.php  
+
+参考链接 http://wow.kuapp.com/markdown/#autolink
 
 
 
