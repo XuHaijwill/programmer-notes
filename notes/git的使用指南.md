@@ -57,3 +57,7 @@ ssh -T git@github.com
 - git push origin v1.0.1
 - git tag -a name -m "comment"
 - git tag -d name
+
+遇到`Initialized empty Git repository in D:/workspaces/git_resources/CaseCode/.git/`
+
+直接在终端中输入： unset SSH_ASKPASS

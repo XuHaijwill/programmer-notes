@@ -8,7 +8,9 @@
 </p>
 
 ## 导读
+### MySelf项目案例
 
+### 基础知识基类
 - [Java基础](notes/Java基础.md)
 - [Java多线程](notes/Java多线程.md) 
 - [Java容器](notes/Java容器.md)
@@ -16,8 +18,10 @@
 - [Spring](notes/Spring.md)
 - [MySQL](notes/mysql.md)
 - [Redis](notes/Redis.md)
+- [RabbitMQ使用指南](notes/RabbitMQ使用指南.md)
+- [HTTP协议](notes/HTTP协议.md)
 - [markdown使用说明](notes/markdown语法的使用指南.md)
 - [git使用指南](notes/git的使用指南.md)
-- [HTTP协议](notes/HTTP协议.md)
+
 
 
