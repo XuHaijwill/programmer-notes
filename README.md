@@ -8,7 +8,7 @@
 </p>
 
 ## 导读
-### MySelf项目案例
+### MySelf项目
 
 ### 基础知识基类
 - [Java基础](notes/Java基础.md)
