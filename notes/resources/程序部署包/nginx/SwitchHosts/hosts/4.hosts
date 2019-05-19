@@ -1,0 +1,4 @@
+#@SwitchHosts! {"url": null, "icon_idx": 0, "title": "JavaEE27"}
+# JavaEE27
+192.168.25.148 www.test.com
+192.168.25.148 www.abc.com

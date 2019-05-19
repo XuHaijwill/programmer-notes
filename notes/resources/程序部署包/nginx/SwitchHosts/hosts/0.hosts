@@ -1,0 +1,10 @@
+#@SwitchHosts! {"url": null, "icon_idx": 0, "title": "\u6dd8\u6dd8\u5546\u57ce\u5f00\u53d1\u73af\u5883"}
+# 淘淘商城开发环境
+
+192.168.25.175 manager.taotao.com
+192.168.25.175 www.taotao.com
+192.168.25.175 search.taotao.com
+192.168.25.175 item.taotao.com
+192.168.25.175 sso.taotao.com
+192.168.25.175 cart.taotao.com
+192.168.25.175 order.taotao.com
