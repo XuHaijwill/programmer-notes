@@ -8,10 +8,8 @@
 </p>
 
 ## 导读
-### MySelf项目
-
 ### 基础知识基类
-- [Java基础](notes/Java基础.md)
+- [Java基础](notes/java基础.md)
 - [Java多线程](notes/Java多线程.md) 
 - [Java容器](notes/Java容器.md)
 - [Java虚拟机](notes/Java虚拟机.md)
