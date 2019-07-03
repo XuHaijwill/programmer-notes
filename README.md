@@ -20,6 +20,7 @@
 - [HTTP协议](notes/HTTP协议.md)
 - [markdown使用说明](notes/markdown语法的使用指南.md)
 - [git使用指南](notes/git的使用指南.md)
+- [商城项目总结](notes/taotao.md)
 
 
 

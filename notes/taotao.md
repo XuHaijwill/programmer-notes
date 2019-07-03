@@ -38,15 +38,15 @@
 ## 端口调整
 - cd /usr/local/apache-activemq-5.15.9/conf
 - vim activemq.xml
-![ActiveMQ端口](images/amq2.png)
+![ActiveMQ端口](taotao/amq2.png)
 - vim jetty.xml
-![ActiveMQ管理端端口](images/amq3.png)
+![ActiveMQ管理端端口](taotao/amq3.png)
 
 http://47.99.215.55:8161/admin/ 
 
 admin 
 admin
-![ActiveMQ管理端](images/amq1.png)
+![ActiveMQ管理端](taotao/amq1.png)
 
 
 # solr安裝部署
@@ -65,7 +65,7 @@ admin
 - cp /usr/local/solr/solr-4.10.3/example/lib/ext/* /usr/local/solr/apache-tomcat-7.0.94/webapps/solr-4.10.3/WEB-INF/lib/
 - cp -r /usr/local/solr/solr-4.10.3/example/solr /usr/local/solr/solrhome
 - 编辑web.xml
-![solr01](images/solr01.png)
+![solr01](taotao/solr01.png)
 - 中文
   - cp IKAnalyzer2012FF_u1.jar /usr/local/solr/apache-tomcat-7.0.94/webapps/solr-4.10.3/WEB-INF/lib/
   - cp IKAnalyzer.cfg.xml ext_stopword.dic mydict.dic /usr/local/solr/apache-tomcat-7.0.94/webapps/solr-4.10.3/WEB-INF/classes
