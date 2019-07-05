@@ -7,8 +7,8 @@
     <a href="#投稿"><img src="https://img.shields.io/badge/Support-投稿-critical.svg" alt="投稿"></a>
 </p>
 
-## 导读
-### 基础知识基类
+# 导读
+# 基础知识基类
 - [Java基础](notes/java基础.md)
 - [Java多线程](notes/Java多线程.md) 
 - [Java容器](notes/Java容器.md)
