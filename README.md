@@ -1,7 +1,8 @@
 # 程序员日记
 
 <p align="center">
-    <a href="https://github.com/WangShuwill/programmer-notes"><img src="https://img.shields.io/badge/阅读-read-brightgreen.svg" alt="阅读"></a>
+    <a href="https://github.com/WangShuwill/programmer-notes">
+	<img src="https://img.shields.io/badge/阅读-read-brightgreen.svg" alt="阅读"></a>
     <a href="#Java"><img src="https://img.shields.io/badge/Note-编程-blue.svg" alt="Java"></a>
     <a href="#面试突击"><img src="https://img.shields.io/badge/PDF-面试突击-important.svg" alt="公众号"></a>
     <a href="#投稿"><img src="https://img.shields.io/badge/Support-投稿-critical.svg" alt="投稿"></a>
