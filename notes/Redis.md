@@ -79,7 +79,7 @@ Redis支持内存数据持久化到硬盘、使用复制来扩展读性能、使
         
         - **brpop key1[key2] timeout** 移除并获取列表的最后一个元素，如果列表没有元素阻塞列表直到等待超时或者可以弹出元素为止
         
-        - **brpoplpush source destination timeout** 从列表弹出一个值，将弹出的值插入到另一个列表中并返回他，如果列表没有元素阻塞列表直到等待超时或者可以弹出元素为止
+        - **brpoplpush source destination timeout** 从列表弹出一个值，将弹出的值插入到另一个列表中并返回他，如果列表中没有元素阻塞列表直到等待超时或者可以弹出元素为止
         
         - **lindex key index** 通过索引获取列表中的元素
         
