@@ -9,7 +9,7 @@
 </p>
 
 # 导读
-# 基础知识
+# 基础
 - [Java基础](notes/java基础.md)
 - [Java多线程](notes/Java多线程.md) 
 - [Java容器](notes/Java容器.md)
