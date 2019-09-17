@@ -388,4 +388,8 @@ Redis集群提供了一种方式自动将数据分布在多个Redis节点上面
 
     zset可以实现有序性操作，从而实现排行榜等功能
 
+	还原合并(docker部署):
+	docker cp ef4:/opt/redis-4.0.10/bin/redis-cli /root
+   ./redis-cli -h 192.168.6.26 -a Gepoint --pipe < appendonly.aof 
+
            
