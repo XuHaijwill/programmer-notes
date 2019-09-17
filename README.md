@@ -11,7 +11,7 @@
 # 导读
 # 基础
 - [Java基础](notes/java基础.md)
-- [Java多线程](notes/Java多线程.md) 
+- [Java多线程](notes/Java多线程相关.md) 
 - [Java容器](notes/Java容器.md)
 - [Java虚拟机](notes/Java虚拟机.md)
 - [Spring](notes/Spring.md)
