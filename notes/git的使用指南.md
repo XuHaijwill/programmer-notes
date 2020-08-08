@@ -61,3 +61,8 @@ ssh -T git@github.com
 遇到`Initialized empty Git repository in D:/workspaces/git_resources/CaseCode/.git/`
 
 直接在终端中输入： unset SSH_ASKPASS
+
+## FAQ
+### Github contributions/Git提交了commit后github个人主页中没有活动记录
+- 查看当前邮箱: git config user.email
+- 修改邮箱地址: git config --global user.email "eamil@example.com"
