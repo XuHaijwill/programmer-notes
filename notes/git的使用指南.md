@@ -15,6 +15,7 @@
   - 删除raindow文件夹及文件 git rm raindow -r -f  
   - 批量操作命令
   ![批量操作命令](git_use/pic_01.png)
+  - git  rm  要删除的文件夹  -r -f  
   > 参考网址：https://www.cnblogs.com/aimqqroad-13/p/7456296.html
 ## git工作流
 工作区 -> 暂存区 -> 版本库
