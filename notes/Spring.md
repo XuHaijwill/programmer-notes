@@ -24,7 +24,7 @@
         public interface Condition {
             boolean matches(ConditionContext context, AnnotatedTypeMetadata metadata);
         }
-        ``` 
+        ```
     - ### **@Import** 快速导入组件
         - @Import(@Component)
         - @Import(ImportSelector)
@@ -45,7 +45,7 @@
                 public void registerBeanDefinitions(AnnotationMetadataimportingClassMetadata, BeanDefinitionRegistry registry);
 
             }
-            ``` 
+            ```
     - ### **FactoryBean** 工厂Bean,可以通过实现该接口定制实例Bean的逻辑
         ``` java
         public interface FactoryBean<T> {
@@ -58,7 +58,7 @@
             // 是否是单实例，默认为是
             default boolean isSingleton() { return true; }
         }
-        ``` 
+        ```
     - ### **InitializingBean** 初始化Bean
         Bean所有的属性全部设置好后，调用实现该接口的方法,例如我们可以用它来检查Bean所有的属性是否设置正确
         ``` java
@@ -78,7 +78,7 @@
             invokeCustomInitMethod(beanName, bean, mbd);
             .......
         }
-        ``` 
+        ```
     - ### **DisposableBean**  销毁Bean
         容器关闭时，先调用DisposableBean的销毁方法，然后在调用Bean的destory-method
         ``` java
@@ -92,7 +92,7 @@
 
         // 然后在调用Bean的destory-method
         invokeCustomDestroyMethod(this.destroyMethod);
-        ``` 
+        ```
     - ### **@PostConstruct** 和 **@PreDestroy** 
         JSR250规范,这两个注解分别是后置构建和前置销毁Bean，调用优先级高于前面所将的初始化和销毁Bean的方式，他们其实是通过**BeanPostProcessor**(后置处理器) **CommonAnnotationBeanPostProcessor(InitDestroyAnnotationBeanPostProcessor)** 来进行初始化的  
 
@@ -109,38 +109,39 @@
 		        return bean;
 	        }
         }
-        ``` 
+        ```
         <div align="center"><img src="resources/spring/initBean.png"/></div><br>
 
         Bean的初始化(initialieBean)均在**populateBean**属性赋值之后完成
 
         **populateBean**主要是解决依赖，属性赋值
+        
         ``` java
         protected Object doCreateBean(final String beanName, final RootBeanDefinition mbd, final @Nullable Object[] args){
             .....
             Object exposedObject = bean;
-            populateBean(beanName, mbd, instanceWrapper);
-		    exposedObject = initializeBean(beanName, exposedObject, mbd);
+		    populateBean(beanName, mbd, instanceWrapper);
+            exposedObject = initializeBean(beanName, exposedObject, mbd);
             .....
         }
-        ```
-
+```
+        
         Spring中几个重要的实现：
         
         **ApplicationContextAwareProcessor**  判别**Aware**,并且设置相应的值
-        <div align="center"><img src="resources/spring/ApplicationContextPostProcessor1.png"/></div><br>
-
-        **BeanValidationPostProcessor** Bean的校验,和**JSR-303 Validator**配合实现Bean的属性校验
-
-        **InitDestroyAnnotationBeanPostProcessor** 处理 **@PostConstruct** 和 **@PreDestroy**注解
-
-        **AutowiredAnnotationBeanPostProcessor** 处理自动注入 **@Autowired** 和 **JSR-330 @Inject** 注解
-
+<div align="center"><img src="resources/spring/ApplicationContextPostProcessor1.png"/></div><br>
+        
+**BeanValidationPostProcessor** Bean的校验,和**JSR-303 Validator**配合实现Bean的属性校验
+        
+**InitDestroyAnnotationBeanPostProcessor** 处理 **@PostConstruct** 和 **@PreDestroy**注解
+        
+**AutowiredAnnotationBeanPostProcessor** 处理自动注入 **@Autowired** 和 **JSR-330 @Inject** 注解
+        
     - ## **InstantiationAwareBeanPostProcessor**
         **InstantiationAwareBeanPostProcessor**继承自BeanPostProcessor，执行时间靠前
         ``` java
-        protected Object createBean(String beanName, RootBeanDefinition mdb, Objects[] args) throws BeanCreationException{
-
+    protected Object createBean(String beanName, RootBeanDefinition mdb, Objects[] args) throws BeanCreationException{
+    
             ...
             try{
                 // 让InstantiationAwareBeanPostProcessor在这一步有机会返回代理
@@ -153,28 +154,28 @@
             // BeanPostProcessor是在这里实例化后才能得到执行
             Object bean = doCreateBean(beanName, mdbToUse, args);
             ...
-            return beanInstance;
-
+        return beanInstance;
+    
         }
-        ```
-
+    ```
+    
         ``` java
-        public interface InstantiationAwareBeanPostProcessor extends BeanPostProcessor {
-
-            default Object postProcessBeforeInstantiation(Class<?> beanClass, String beanName) throws BeansException {
+    public interface InstantiationAwareBeanPostProcessor extends BeanPostProcessor {
+    
+	        default Object postProcessBeforeInstantiation(Class<?> beanClass, String beanName) throws BeansException {
 		        return null;
-	        }
-
-            default boolean postProcessAfterInstantiation(Object bean, String beanName) throws BeansException {
-		        return true;
-	        }
-
-            default PropertyValues postProcessProperties(PropertyValues pvs, Object bean, String beanName) throws BeansException {
-		        return null;
-	        }
         }
-        ``` 
-
+    
+	        default boolean postProcessAfterInstantiation(Object bean, String beanName) throws BeansException {
+		        return true;
+        }
+    
+	        default PropertyValues postProcessProperties(PropertyValues pvs, Object bean, String beanName) throws BeansException {
+		        return null;
+            }
+        }
+    ```
+    
     - ## **BeanFactoryPostProcessor**  BeanFactory的后置处理器
         BeanFactoryPostProcessor是Bean工厂的后置处理，而BeanPostProcessor是Bean的后置处理器，两者完全不同
         BeanFactoryPostProcessor可以在实例化之前修改Bean的定义(**BeanDefinition**),或者注册Bean,可以通过设置Order来规定其执行顺序
@@ -184,26 +185,27 @@
         }
         ```
         BeanFactoryPostProcessor及其子类的调用流程
-        <div align="center"><img src="resources/spring/invokeBeanFactoryPostProcessors.png"/></div><br>
-
+    
+    <div align="center"><img src="resources/spring/invokeBeanFactoryPostProcessors.png"/></div><br>
+        
     - ## **BeanDefinitionRegistryPostProcessor**
         在BeanFactoryPostProcssor执行之前，向容器中注册Bean定义
-        ``` java
+    ``` java
         public interface BeanDefinitionRegistryPostProcessor extends BeanFactoryPostProcessor {
 
             void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry) throws BeansException;
-
-        }
-        ``` 
-
+    
+    }
+        ```
+    
     - ## **ApplicationListener**
         容器事件监听器 
         ``` java
         public interface ApplicationListener<E extends ApplicationEvent> extends EventListener {
             void onApplicationEvent(E event);
-        }
+    }
         ```
-
+    
     - ## **@Value** 属性赋值
         - ### 基本赋值 @Value(value)
         - ### SpringEL表达式 @Value("#{value}")
@@ -211,30 +213,30 @@
         - ### 使用@PropertySource是配置文件的键值对加载到**Environment**中,可以使用Environment来获取对应的值
             ``` java
             @Component
-            @PropertySource("classpath:/jdbc.properties")
-            public class DataSourceConfig implements EnvironmentAware {
+        @PropertySource("classpath:/jdbc.properties")
+	        public class DataSourceConfig implements EnvironmentAware {
 
-	            private Environment environment;
-
-                @Value("${jdbc.username}")
+                private Environment environment;
+    
+            @Value("${jdbc.username}")
                 private String username;
-
+    
                 @Value("${jdbc.password}")
                 private String password;
                 
                 public String getPropertyValue(String key) {
-                    return environment.getProperty(key);
+                return environment.getProperty(key);
                 }
-
+    
                 @Override
                 public void setEnvironment(Environment environment) {
-                    this.environment =  environment;
+                this.environment =  environment;
                 }
-
+    
             }
-            ```  
+            ```
         - ### 实现原理简析看下面的 **ConfigurationClassPostProcessor**
-         
+        
     - ## **@Autowired** 自动注入
         - ### 优先按照类型从容器寻找相应的实例
         - ### 如果有多个组件，再将属性名作为BeanName从容器中寻找
@@ -243,11 +245,11 @@
     - ## **@Primary** 自动装配首选装配的Bean
     - ## **@Resource** JSR-250 自动装配
     - ## **@Inject** JSR-330 自动装配
-    - ## **AutowiredAnnotationBeanPostProcessor**
+- ## **AutowiredAnnotationBeanPostProcessor**
         <div align="center"><img src="resources/spring/AutowiredAnnotaionBeanPostProcessor.png"/></div><br> 
-
+    
         发现自动注入的相关注解，并且生成InjectMetadate
-        <div align="center"><img src="resources/spring/InjectMetadateBuild.png"/></div><br> 
+    <div align="center"><img src="resources/spring/InjectMetadateBuild.png"/></div><br> 
         CommonAnnotationBeanPostProcessot是用来处理@Resource,@EJB等注解的
 
         
@@ -259,90 +261,90 @@
         IOC容器再次发现B依赖于A时，会获取A对象一个早期引用(early reference),并且把这个早期引用注入到容器中，让B先完成实例化，B完成实例化后，A就可以获取B的引用，随之A实例完成
 
         早期引用是通过构造器进行创建的，所以Spring无法解决构造器的循环依赖
-
+    
         - #### 循环依赖的场景
             1.构造器的循环依赖 EROR Spring无法解决
             ``` java
-            @Service
+        @Service
             public class ServiceAimpl implements ServiceA{
-
-                @Autowired
-	            public ServiceAimpl(ServiceB serviceB) {
-		            this.serviceB = serviceB;
-
-                 @Override
+	
+	            @Autowired
+            public ServiceAimpl(ServiceB serviceB) {
+    	            this.serviceB = serviceB;
+	
+	             @Override
 	            public void sayHelloA() {
 		            serviceB.sayHelloB();
-	            }
-	        }
-
-            @Service
-            public class ServiceBimpl implements ServiceB {
-
+            }
+            }
+    
+        @Service
+	        public class ServiceBimpl implements ServiceB {
+	
 	            @Autowired
 	            public ServiceBimpl(ServiceA serviceA) {
-		            this.serviceA = serviceA;
+	            this.serviceA = serviceA;
 	            }
-
+	
 	            @Override
 	            public void sayHelloB() {
-		            serviceA.sayHelloA();
-	            }
-            }
+    	            serviceA.sayHelloA();
+                }
+        }
             ```
-
+    
             2.field属性的循环依赖
             ``` java
-            @Service
+        @Service
             public class ServiceAimpl implements ServiceA{
-
+    
                 @Autowired
                 private ServiceB serviceB;
                 
                 @Override
                 public void sayHelloA() {
                     serviceB.sayHelloB();
-                }
             }
-
-            @Service
+            }
+    
+        @Service
             public class ServiceBimpl implements ServiceB {
-
-                @Autowired
+    
+            @Autowired
                 private ServiceA serviceA;
-
+    
                 @Override
                 public void sayHelloB() {
                     serviceA.sayHelloA();
                 }
             }
-            ```  
+            ```
         - #### 三级缓存
             1. **SingletonObjects** 存放完全初始化好的Bean,从该缓存中取出的Bean可以直接用
             2. **EarlySingletonObjects** 存放原始的Bean对象(属性未进行填充),用于解决循环依赖
             3. **SinglentonFactories** 存放单例工厂对象，用于解决循环依赖
             ``` java
-            public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements SingletonBeanRegistry {
-                /** Cache of singleton objects: bean name --> bean instance */
+	        public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements SingletonBeanRegistry {
+            /** Cache of singleton objects: bean name --> bean instance */
 	            private final Map<String, Object> singletonObjects = new ConcurrentHashMap<String, Object>(256);
-
-	            /** Cache of singleton factories: bean name --> ObjectFactory */
+	
+            /** Cache of singleton factories: bean name --> ObjectFactory */
 	            private final Map<String, ObjectFactory<?>> singletonFactories = new HashMap<String, ObjectFactory<?>>(16);
-
-	            /** Cache of early singleton objects: bean name --> bean instance */
-	            private final Map<String, Object> earlySingletonObjects = new HashMap<String, Object>(16);
+	
+                /** Cache of early singleton objects: bean name --> bean instance */
+                private final Map<String, Object> earlySingletonObjects = new HashMap<String, Object>(16);
             }
             ```
         - #### 解决循环依赖 
-            <div align="center"><img src="resources/spring/CircularReferences.png"/></div><br>
+        <div align="center"><img src="resources/spring/CircularReferences.png"/></div><br>
             IOC容器在获取Bean时，先去执行getSingleton(beanName,allowEarlyReference),根据不同的条件从不同的缓存中获取对应Bean对象,图中的1
-
+    
             ``` java
-            protected Object getSingleton(String beanName, boolean allowEarlyReference) {
+	        protected Object getSingleton(String beanName, boolean allowEarlyReference) {
                     // 先从一级缓存singletonObjects中获取对应的bean对象
 		            Object singletonObject = this.singletonObjects.get(beanName);
-                    // 如果没有获取到，并且最近创建对象缓存singletonsCurrentlyInCreation中含有此Bean对象，则进行下一步操作
-		            if (singletonObject == null && isSingletonCurrentlyInCreation(beanName)) {
+	                // 如果没有获取到，并且最近创建对象缓存singletonsCurrentlyInCreation中含有此Bean对象，则进行下一步操作
+    	            if (singletonObject == null && isSingletonCurrentlyInCreation(beanName)) {
 			            synchronized (this.singletonObjects) {
                             //从存放原始Bean对象的缓存EarlySingletonObjects中获取原始Bean对象
 				        singletonObject = this.earlySingletonObjects.get(beanName);
@@ -356,18 +358,18 @@
 						        singletonObject = singletonFactory.getObject();
                                             //将获取的原始对象放到原始对象缓存中
 						        this.earlySingletonObjects.put(beanName, singletonObject);
-                                            //与此同时，将对应的单例对象工程从缓存中移除
+	                                        //与此同时，将对应的单例对象工程从缓存中移除
 						        this.singletonFactories.remove(beanName);
 					        }
 				        }
 			        }
 		        }
-		        return singletonObject;
-	        }
+    	        return singletonObject;
+        }
             ```
 
             容器如果没有获取Bean对象,则去创建Bean对象，在创建Bean对象时，会先把Bean的名字放到singletonsCurrentlyInCreation缓存中，图中的2
-
+    
             ``` java
             public Object getSingleton(String beanName, ObjectFactory<?> singletonFactory) {
                 Object singletonObject = this.singletonObjects.get(beanName);
@@ -385,32 +387,32 @@
                     if (newSingleton) {
                         addSingleton(beanName, singletonObject);
                     }
-                }
             }
-
-            protected void beforeSingletonCreation(String beanName) {
-                if (!this.inCreationCheckExclusions.contains(beanName) && !this.singletonsCurrentlyInCreation.add(beanName)) {
-			        throw new BeanCurrentlyInCreationException(beanName);
-		        }
             }
-            ```    
+    
+	        protected void beforeSingletonCreation(String beanName) {
+	            if (!this.inCreationCheckExclusions.contains(beanName) && !this.singletonsCurrentlyInCreation.add(beanName)) {
+    		        throw new BeanCurrentlyInCreationException(beanName);
+    	        }
+        }
+            ```
 
             容器调用doCreateBean方法进行Bean的创建等工作,大概步骤如下
-
+    
             ``` java
-            protected Object doCreateBean(final String beanName, final RootBeanDefinition mbd, final Object[] args){
+	        protected Object doCreateBean(final String beanName, final RootBeanDefinition mbd, final Object[] args){
                 BeanWrapper instanceWrapper = null;
 		        ....
-                // createBeanInstance会使用工厂方法或者构造器创建一个空属性Bean对象
+	            // createBeanInstance会使用工厂方法或者构造器创建一个空属性Bean对象
 		        if (instanceWrapper == null) {
 			        instanceWrapper = createBeanInstance(beanName, mbd, args);
 		        }
-		        final Object bean = instanceWrapper.getWrappedInstance();
-		        Class<?> beanType = instanceWrapper.getWrappedClass();
+    	        final Object bean = instanceWrapper.getWrappedInstance();
+    	        Class<?> beanType = instanceWrapper.getWrappedClass();
                 ....
-                // 解决依赖循环，如果是单实例，允许依赖循环并且singletonsCurrentlyInCreation含有此Bean对象的名字，则把创建原始对象的工厂放到SinglentonFactories缓存中
+	            // 解决依赖循环，如果是单实例，允许依赖循环并且singletonsCurrentlyInCreation含有此Bean对象的名字，则把创建原始对象的工厂放到SinglentonFactories缓存中
                 boolean earlySingletonExposure = (mbd.isSingleton() && this.allowCircularReferences &&
-				isSingletonCurrentlyInCreation(beanName));
+    			isSingletonCurrentlyInCreation(beanName));
                 if (earlySingletonExposure) {
                     addSingletonFactory(beanName, () -> getEarlyBeanReference(beanName, mbd, bean));
                 }
@@ -422,7 +424,7 @@
                 exposedObject = initializeBean(beanName, exposedObject, mbd);
                 ....
             }
-            ```         
+            ```
 
 # 二、AOP
 - 基于动态代理实现，默认使用接口，用JDK提供的动态代理实现；如果没有接口使用CGLIB实现
@@ -441,7 +443,7 @@
                 LOGGER.info("The method is {}, and args is {}, and target is {}.", method, Arrays.toString(args), target);
             }
         }
-        ``` 
+        ```
     - 继承或者使用Advisor,注入ProxyBeanFactory,Advisor有好几个默认的实现类
         - NameMatchMethodPointcutAdvisor 提供方法名，符合配置的方法才会拦截
             ``` java
@@ -485,10 +487,10 @@
 
             UserSerice userSerice = applicationContext.getBean(UserSerice.class);
             userSerice.getUserName("123");
-            ``` 
+            ```
         - RegexpMethodPointcutAdvisor 正则匹配
         - DefaultAdvisorAutoProxyCreator
-         
+        
     - @EnableAspectJAutoProxy 基于注解自动代理
         - @Aspect 把当前的类标识为一个切面
         - @Before 前置增强方法，相当于BeforeAdvice
@@ -507,6 +509,7 @@
             * '+' 必须跟在类后面，表示类本身或扩展制定类的所有类
         - JoinPoint 连接点  
         - AspectJ指示器
+             
              <div align="center"><img src="resources/spring/aspectj1.png"/></div><br>
 - 源码分析
     - **@EnableAspectJAutoProxy**
@@ -520,7 +523,7 @@
 
 
 
-                    
+
 # 三、Spring MVC
 
 <div align="center"><img src="resources/spring/springmvc-all.png"/></div><br>
@@ -601,13 +604,14 @@
         ```
     - ### DispatcherServlet初始化
          DispatcherServlet初始化大致如下：
-         <div align="center"><img src="resources/spring/dispatcherServletInit.png"/></div><br>
-
+         
+<div align="center"><img src="resources/spring/dispatcherServletInit.png"/></div><br>
+         
     - ### 如何找到正确的Controller  
         * MvcNamespaceHandler
         * AnnotationDrivenBeanDefinitionParser
-        * RequestMappingHandlerMapping
-
+    * RequestMappingHandlerMapping
+    
         <div align="center"><img src="resources/spring/RequestMappingHandlerMapping.png"/></div><br>
 
 
@@ -627,6 +631,6 @@
       - 配置自动装配实现  **META-INF/spring.factories**
 
 - ## SpringApplication
-    
+  
 # 五、Srping Cloud
 # 六、Spring事务

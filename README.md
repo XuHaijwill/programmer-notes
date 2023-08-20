@@ -15,6 +15,7 @@
 - [Java容器](notes/Java容器.md)
 - [Java虚拟机](notes/Java虚拟机.md)
 - [Spring](notes/Spring.md)
+- [SpringMVC](notes/SpringMVC.md)
 - [MySQL](notes/mysql.md)
 - [Redis](notes/Redis.md)
 - [RabbitMQ使用指南](notes/RabbitMQ使用指南.md)
