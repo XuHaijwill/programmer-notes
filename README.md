@@ -24,6 +24,7 @@
 - [git使用指南](notes/git的使用指南.md)
 - [商城项目总结](notes/taotao.md)
 - [sqlplus及plsql应用](notes/sqlplus及plsql应用安装教程.md)
+- [ChatAI](notes/ChatAI.md)
 
 
 
