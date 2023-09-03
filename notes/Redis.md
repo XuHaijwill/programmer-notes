@@ -1,4 +1,5 @@
 <!-- GFM-TOC -->
+
 * ### [一、简介](#一简介-1)
 * ### [二、数据类型](#二数据类型)
     * ### [String](#string-1)
@@ -16,12 +17,77 @@
 * ### [十、应用场景](#十应用场景-1)
 <!-- GFM-TOC -->
 
-# 一、简介
-Redis:速度快、非关系型(NOSQL)、内存键值型数据库，单线程。
+# 1.简介
+> Redis:速度快、非关系型(NOSQL)、内存键值型数据库，单线程。
+> 键的类型只能为字符串,值支持五种数据类型：字符串、列表、集合、散列表、有序集合。
+> Redis支持内存数据持久化到硬盘、使用复制来扩展读性能、使用分片来扩展写性能等特性。
 
-键的类型只能为字符串,值支持五种数据类型：字符串、列表、集合、散列表、有序集合。
+> Redis是一个开源的key-value存储系统。
+> 和Memcached类似，它支持存储的value类型相对更多，包括string(字符串)、list(链表)、set(集合)、zset(sorted set --有序集合)和hash（哈希类型）。
+> 这些数据类型都支持push/pop、add/remove及取交集并集和差集及更丰富的操作，而且这些操作都是原子性的。
+> 在此基础上，Redis支持各种不同方式的排序。
+> 与memcached一样，为了保证效率，数据都是缓存在内存中。
+> 区别的是Redis会周期性的把更新的数据写入磁盘或者把修改操作写入追加的记录文件。
+> 并且在此基础上实现了master-slave(主从)同步。
 
-Redis支持内存数据持久化到硬盘、使用复制来扩展读性能、使用分片来扩展写性能等特性。
+| Redis官方网站   | Redis中文官方网站 |
+| --------------- | ----------------- |
+| http://redis.io | http://redis.cn/  |
+
+## 1.1 Redis6安装
+
+> 安装C 语言的编译环境
+> yum install centos-release-scl scl-utils-build
+> yum install -y devtoolset-8-toolchain
+> scl enable devtoolset-8 bash
+> 测试 gcc版本 
+> gcc --version
+>
+> 下载redis-6.2.1.tar.gz放/opt目录
+> 解压命令：tar -zxvf redis-6.2.1.tar.gz
+> 解压完成后进入目录：cd redis-6.2.1
+> 在redis-6.2.1目录下再次执行make命令（只是编译好）
+> 如果没有准备好C语言编译环境，make 会报错—Jemalloc/jemalloc.h：没有那个文件
+>
+> server and client
+>
+> /usr/local/bin
+>
+> 客户端
+>
+> redis-cli -p 6379
+>
+> 测试连接
+>
+> ping
+>
+> Redis关闭
+> 单实例关闭：redis-cli shutdown
+>
+> 多实例关闭，指定端口关闭：redis-cli -p 6379 shutdown
+
+
+
+> 默认16个数据库，类似数组下标从0开始，初始默认使用0号库
+> 使用命令 select   <dbid>来切换数据库。如: select 8 
+> 统一密码管理，所有库同样密码。
+> dbsize查看当前数据库的key的数量
+> flushdb清空当前库
+> flushall通杀全部库
+
+
+
+> Redis是单线程+多路IO复用技术
+>
+> 多路复用是指使用一个线程来检查多个文件描述符（Socket）的就绪状态，比如调用select和poll函数，传入多个文件描述符，如果有一个文件描述符就绪，则返回，否则阻塞直到超时。得到就绪状态后进行真正的操作可以在同一个线程里执行，也可以启动线程执行（比如使用线程池）
+
+
+
+> 串行  vs  多线程+锁（memcached） vs  单线程+多路IO复用(Redis)
+
+> （与Memcache三点不同: 支持多数据类型，支持持久化，单线程+多路IO复用） 
+
+![image-20230903203521026](redis\image-20230903203521026.png)
 
 # 二、数据类型
 - ### String
@@ -31,7 +97,7 @@ Redis支持内存数据持久化到硬盘、使用复制来扩展读性能、使
     
     * 命令：
         - **set key value** 设置指定key的值 
-           
+          
         - **get key** 获取key的值
         
         - **getrange key start end** 返回key中字符串的子字符串
@@ -68,7 +134,7 @@ Redis支持内存数据持久化到硬盘、使用复制来扩展读性能、使
     - 使用场景：
 
 
-    
+​    
 - ### List
     * 可存储的值：列表
     
@@ -152,7 +218,7 @@ Redis支持内存数据持久化到硬盘、使用复制来扩展读性能、使
         - **sunionstore destinatin key1[key2]** 返回指定集合的并集并且存储到集合destination中
         
         - **sscan key cursor [match pattern][count count]** 迭代集合中的元素
-          
+    
 - ### Hash
     * 可存储的值：包含键值对的无序散列表
     
@@ -186,7 +252,7 @@ Redis支持内存数据持久化到硬盘、使用复制来扩展读性能、使
         - **hvals key** 获取哈希表中所有的值
         
         - **hscan key cursor[match pattern][count count]** 迭代哈希表的键值对
-        
+    
 - ### Sorted Set
     * 可存储的值：有序集合
     
@@ -392,4 +458,4 @@ Redis集群提供了一种方式自动将数据分布在多个Redis节点上面
 	docker cp ef4:/opt/redis-4.0.10/bin/redis-cli /root
    ./redis-cli -h 192.168.6.26 -a Gepoint --pipe < appendonly.aof 
 
-           
+   ​        
